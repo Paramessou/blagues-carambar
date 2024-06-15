@@ -10,6 +10,16 @@ const ajouterBlague = async (req, res) => {
     }
 };
 
+const ajouterBlagues = async (req, res) => {
+    const blagues = req.body;
+    try {
+        const result = await Blague.bulkCreate(blagues);
+        res.status(201).json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 const obtenirToutesBlagues = async (req, res) => {
     try {
         const blagues = await Blague.findAll();
@@ -46,4 +56,4 @@ const obtenirBlagueAleatoire = async (req, res) => {
     }
 };
 
-module.exports = { ajouterBlague, obtenirToutesBlagues, obtenirBlagueParId, obtenirBlagueAleatoire };
+module.exports = { ajouterBlague, ajouterBlagues, obtenirToutesBlagues, obtenirBlagueParId, obtenirBlagueAleatoire };
