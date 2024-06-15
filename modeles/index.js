@@ -1,4 +1,4 @@
-const sequelize = require('../configuration/baseDeDonnees');
+const sequelize = require('../config/baseDeDonnees');
 const Blague = require('./blague');
 
 const initDB = async () => {
