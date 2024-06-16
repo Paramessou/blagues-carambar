@@ -1,4 +1,5 @@
 const express = require('express'); // Importation du module express pour créer un serveur
+const cors = require('cors'); // Importation du module cors pour gérer les requêtes CORS (Cross-Origin Resource Sharing)
 const bodyParser = require('body-parser'); // Importation du module body-parser pour parser les requêtes HTTP. Que signifie parser ? Cela signifie analyser une chaîne de caractères pour en extraire des informations structurées.
 const swaggerJSDoc = require('swagger-jsdoc'); // Importation du module swagger-jsdoc pour générer la documentation Swagger à partir des commentaires JSDoc
 const swaggerUi = require('swagger-ui-express'); // Importation du module swagger-ui-express pour afficher la documentation Swagger dans une interface web
@@ -8,6 +9,7 @@ const blagueRoutes = require('./routes/blagueRoutes'); // Importation du fichier
 const app = express(); // Création d'une application express
 
 app.use(bodyParser.json()); // Utilisation de body-parser pour parser les requêtes HTTP
+app.use(cors()); // Utilisation de cors pour gérer les requêtes CORS (Cross-Origin Resource Sharing)
 
 // Définition des options Swagger pour générer la documentation
 const swaggerOptions = {
