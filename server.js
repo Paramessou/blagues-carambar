@@ -12,6 +12,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get('/', (req, res) => { // Route racine de l'API pour afficher un message de bienvenue
+    res.send('Bienvenue à l\'API de Blagues Carambar');
+});
+
 const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
