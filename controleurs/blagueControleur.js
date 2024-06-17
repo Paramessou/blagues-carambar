@@ -49,7 +49,9 @@ const obtenirBlagueParId = async (req, res) => {
 
 const obtenirBlagueAleatoire = async (req, res) => {
     try {
-        const blague = await Blague.findOne({ order: sequelize.random() });
+        const blague = await Blague.findOne({
+            order: sequelize.random() // Utilisation de la fonction random() de Sequelize
+        });
         if (blague) {
             res.status(200).json(blague);
         } else {

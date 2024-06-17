@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize'); // Importation de la classe Sequeliz
 
 const sequelize = new Sequelize({ // Création d'une instance de Sequelize
     dialect: 'sqlite', // Utilisation du dialecte SQLite pour communiquer avec la base de données
-    storage: 'database.sqlite' // Stockage de la base de données dans un fichier database.sqlite
+    storage: './database.sqlite' // Stockage de la base de données dans un fichier database.sqlite
 });
 
 const initDB = async () => {
