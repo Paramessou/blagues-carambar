@@ -1,5 +1,5 @@
 const Blague = require('../modeles/blague');
-const { sequelize } = require('../config/baseDeDonnees'); // Importe sequelize correctement
+const { sequelize } = require('../config/baseDeDonnees'); // Importez sequelize correctement
 
 const ajouterBlague = async (req, res) => {
     try {
