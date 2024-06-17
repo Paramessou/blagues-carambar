@@ -1,5 +1,4 @@
 const Blague = require('../modeles/blague');
-const { sequelize } = require('../config/baseDeDonnees'); // Importez sequelize correctement
 const { Sequelize } = require('sequelize');
 
 const ajouterBlague = async (req, res) => {
@@ -51,7 +50,7 @@ const obtenirBlagueParId = async (req, res) => {
 const obtenirBlagueAleatoire = async (req, res) => {
     try {
         const blague = await Blague.findOne({
-            order: Sequelize.literal('RANDOM()') // Sequelize.literal('RANDOM()') pour obtenir un enregistrement aléatoire
+            order: Sequelize.fn('RANDOM') // Utilisation de Sequelize.fn pour appeler une fonction SQL de manière sécurisée
         });
         if (blague) {
             res.status(200).json(blague);
