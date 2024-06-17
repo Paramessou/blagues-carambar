@@ -34,7 +34,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/api', blagueRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000; // Utilisez le port spécifié dans les variables d'environnement ou le port 3000 par défaut
 
 const initializeApp = async () => {
     await initDB();
