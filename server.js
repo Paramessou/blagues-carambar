@@ -1,49 +1,54 @@
-const express = require('express'); // Importation du module express pour créer un serveur
-const cors = require('cors'); // Importation du module cors pour gérer les requêtes CORS (Cross-Origin Resource Sharing)
-const bodyParser = require('body-parser'); // Importation du module body-parser pour parser les requêtes HTTP. Que signifie parser ? Cela signifie analyser une chaîne de caractères pour en extraire des informations structurées.
-const swaggerJSDoc = require('swagger-jsdoc'); // Importation du module swagger-jsdoc pour générer la documentation Swagger à partir des commentaires JSDoc
-const swaggerUi = require('swagger-ui-express'); // Importation du module swagger-ui-express pour afficher la documentation Swagger dans une interface web
-const { initDB } = require('./modeles'); // Importation de la fonction initDB du fichier modeles/index.js
-const blagueRoutes = require('./routes/blagueRoutes'); // Importation du fichier blagueRoutes.js
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const { initDB, sequelize } = require('./config/baseDeDonnees');
+const blagueRoutes = require('./routes/blagueRoutes');
+//const Blague = require('./modeles/blague'); // Importez le modèle Blague
 
-const app = express(); // Création d'une application express
+const app = express();
 
-app.use(bodyParser.json()); // Utilisation de body-parser pour parser les requêtes HTTP
-app.use(cors()); // Utilisation de cors pour gérer les requêtes CORS (Cross-Origin Resource Sharing)
+app.use(bodyParser.json());
+app.use(cors());
 
-// Définition des options Swagger pour générer la documentation
 const swaggerOptions = {
-    swaggerDefinition: { // Définition de l'objet swaggerDefinition
-        openapi: '3.0.0', // Version de l'OpenAPI Specification
-        info: { // Informations sur l'API
-            title: 'API Blagues Carambar', // Titre de l'API
-            version: '1.0.0', // Version de l'API
-            description: 'API pour gérer les blagues Carambar', // Description de l'API
+    swaggerDefinition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'API Blagues Carambar',
+            version: '1.0.0',
+            description: 'API pour gérer les blagues Carambar',
         },
-        servers: [ // Serveurs de l'API
+        servers: [
             {
-                url: 'https://blagues-carambar.onrender.com', // URL du serveur
+                url: 'https://blagues-carambar.onrender.com',
             },
         ],
     },
-    apis: ['./routes/*.js'], // Fichiers à scanner pour générer la documentation Swagger
+    apis: ['./routes/*.js'],
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// Route par défaut pour la racine
-app.get('/', (req, res) => { // Définition de la route pour la racine
-    res.send('Bienvenue à l\'API de Blagues Carambar'); // Envoi de la réponse
-});
+app.use('/api', blagueRoutes);
 
-app.use('/api', blagueRoutes); // Utilisation des routes définies dans blagueRoutes
+const PORT = process.env.PORT || 3000;
 
-const PORT = process.env.PORT || 3000; // Définition du port du serveur (3000 par défaut)
+const initializeApp = async () => {
+    await initDB();
+    await sequelize.sync({ force: true }); // Synchronise tous les modèles, { force: true } réinitialise la base de données à chaque démarrage
 
-initDB().then(() => { // Initialisation de la base de données
-    app.listen(PORT, () => { // Démarrage du serveur
-        console.log(`Serveur démarré sur le port ${PORT}`); // Affichage d'un message dans la console pour indiquer que le serveur a démarré avec succès sur le port spécifié
+    // // Ajout d'un exemple de blague
+    // await Blague.create({
+    //     contenu: "Pourquoi les plongeurs plongent-ils toujours en arrière et jamais en avant ?",
+    //     chute: "Parce que sinon ils tombent dans le bateau."
+    // });
+
+    app.listen(PORT, () => {
+        console.log(`Serveur démarré sur le port ${PORT}`);
     });
-});
+};
 
+initializeApp();
