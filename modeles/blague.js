@@ -10,6 +10,8 @@ const Blague = sequelize.define('Blague', { // Définition du modèle Blague
         type: DataTypes.STRING,
         allowNull: false
     }
+}, {
+    tableName: 'Blagues' // S'assure que le modèle utilise la table 'Blagues'
 });
 
-module.exports = Blague;
+module.exports = Blague; // Exportez le modèle Blague pour pouvoir l'utiliser dans d'autres fichiers
