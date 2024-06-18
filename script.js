@@ -1,6 +1,6 @@
 document.getElementById('boutonBlague').addEventListener('click', async () => {
     try {
-        const response = await fetch('https://blagues-carambar.onrender.com/api/blagues/aleatoire/');
+        const response = await fetch('https://blagues-carambar.onrender.com/api/blagues/');
         if (!response.ok) {
             throw new Error('La réponse du réseau n\'est pas correcte');
         }
