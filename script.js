@@ -52,8 +52,17 @@ document.getElementById('boutonAfficherToutes').addEventListener('click', async 
             div.innerText = `${blague.contenu} - ${blague.chute}`;
             affichageToutesBlagues.appendChild(div);
         });
+        // Afficher le bouton "Cacher toutes les blagues"
+        document.getElementById('boutonCacherToutes').style.display = 'block';
     } catch (error) {
-        console.error('Erreur lors de la récupération de toutes les blagues:', error);
-        document.getElementById('affichageToutesBlagues').innerText = 'Erreur lors de la récupération de toutes les blagues.';
+        console.error('Erreur lors de la récupération des blagues:', error);
     }
+});
+
+document.getElementById('boutonCacherToutes').addEventListener('click', () => {
+    const affichage = document.getElementById('affichageToutesBlagues');
+    affichage.innerHTML = '';
+
+    // Masquer le bouton "Cacher toutes les blagues"
+    document.getElementById('boutonCacherToutes').style.display = 'none';
 });
