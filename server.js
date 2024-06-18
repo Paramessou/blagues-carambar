@@ -1,11 +1,11 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-const { initDB, sequelize } = require('./config/baseDeDonnees');
-const blagueRoutes = require('./routes/blagueRoutes');
+const express = require('express'); // Importation du module express pour créer l'application
+const path = require('path'); // Importation du module path pour gérer les chemins de fichiers
+const bodyParser = require('body-parser'); // Importation du module body-parser pour analyser les corps des requêtes HTTP
+const cors = require('cors'); // Importation du module cors pour gérer les requêtes cross-origin
+const swaggerJSDoc = require('swagger-jsdoc'); // Importation du module swagger-jsdoc pour générer la documentation Swagger
+const swaggerUi = require('swagger-ui-express'); // Importation du module swagger-ui-express pour afficher la documentation Swagger
+const { initDB, sequelize } = require('./config/baseDeDonnees'); // Importation de la fonction d'initialisation de la base de données
+const blagueRoutes = require('./routes/blagueRoutes'); // Importation des routes pour les blagues
 
 const app = express();
 
