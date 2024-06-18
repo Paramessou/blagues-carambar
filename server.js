@@ -10,7 +10,7 @@ const app = express();
 
 // Configuration CORS pour autoriser les requêtes depuis le domaine frontend
 const corsOptions = {
-    origin: 'https://paramessou.github.io/blagues-carambar/',
+    origin: 'https://paramessou.github.io',
     optionsSuccessStatus: 200
 };  
 
