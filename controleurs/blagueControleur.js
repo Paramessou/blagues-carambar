@@ -35,7 +35,6 @@ const obtenirToutesBlagues = async (req, res) => {
 
 const obtenirBlagueParId = async (req, res) => {
     try {
-        console.log(`Recherche de la blague avec l'ID: ${req.params.id}`);
         const blague = await Blague.findByPk(req.params.id);
         if (blague) {
             res.status(200).json(blague);
@@ -50,9 +49,8 @@ const obtenirBlagueParId = async (req, res) => {
 
 const obtenirBlagueAleatoire = async (req, res) => {
     try {
-        console.log('Tentative de récupération d\'une blague aléatoire...');
         const blague = await Blague.findOne({
-            order: Sequelize.fn('RANDOM') // Utilisation de Sequelize.fn pour appeler une fonction SQL de manière sécurisée
+            order: Sequelize.literal('RANDOM()') // Utilisation de Sequelize.literal pour obtenir un enregistrement aléatoire
         });
         if (blague) {
             res.status(200).json(blague);
