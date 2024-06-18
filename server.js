@@ -8,8 +8,14 @@ const blagueRoutes = require('./routes/blagueRoutes');
 
 const app = express();
 
+// Configuration CORS pour autoriser les requêtes depuis le domaine frontend
+const corsOptions = {
+    origin: 'https://paramessou.github.io/blagues-carambar/',
+    optionsSuccessStatus: 200
+};  
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
-app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Bienvenue à l\'API de Blagues Carambar');
