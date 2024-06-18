@@ -5,7 +5,7 @@ body {
     align-items: center;
     background-color: #f0f0f0;
     margin: 0;
-    /* padding-top: 20px; Ajoute de l'espace pour le header */
+    padding-top: 20px; /* Ajoute de l'espace pour le header */
 }
 
 .header {
@@ -14,7 +14,7 @@ body {
     background-size: contain;
     background-position: top;
     background-repeat: no-repeat;
-    height: 500px;
+    height: 200px; /* Ajustez la hauteur selon vos besoins */
     width: 100%;
 }
 
@@ -48,6 +48,14 @@ button:hover {
     margin-top: 20px;
     font-size: 18px;
     color: #333;
+}
+
+#affichageToutesBlagues div {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 form {
