@@ -1,4 +1,4 @@
-document.getElementById('boutonBlague').addEventListener('click', async () => {
+document.getElementById('boutonBlague').addEventListener('click', async () => { // Ajout d'un écouteur d'événements sur le bouton pour récupérer une blague aléatoire lors du clic asynch() = fonction asynchrone qui permet d'attendre la fin de l'appel à l'API avant de continuer
     try {
         const response = await fetch('https://blagues-carambar.onrender.com/api/blagues/aleatoire/'); // Appel de l'API pour récupérer une blague aléatoire depuis l'URL
         if (!response.ok) {
