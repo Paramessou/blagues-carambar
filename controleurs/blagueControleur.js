@@ -49,12 +49,15 @@ const obtenirBlagueParId = async (req, res) => {
 
 const obtenirBlagueAleatoire = async (req, res) => {
     try {
+        console.log('Tentative de récupération d\'une blague aléatoire');
         const blague = await Blague.findOne({
             order: Sequelize.literal('RANDOM()') // Utilisation de Sequelize.literal pour obtenir un enregistrement aléatoire
         });
+        console.log('Blague récupérée:', blague);
         if (blague) {
             res.status(200).json(blague);
         } else {
+            console.log('Aucune blague disponible');
             res.status(404).json({ error: 'Aucune blague disponible' });
         }
     } catch (error) {
