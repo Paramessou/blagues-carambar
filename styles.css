@@ -1,11 +1,20 @@
 body {
     font-family: Arial, sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
+}
+
+.header {
+    background-image: url('img/Les pubs de Carambar.jpg'); /* Spécifiez le chemin de l'image ici */
+    background-size: cover;
+    background-position: center;
+    height: 200px; /* Ajustez la hauteur de la bannière */
+    width: 100%;
 }
 
 .container {
@@ -14,16 +23,41 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Ajout de marge pour l'espacement avec la bannière */
 }
 
 button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+}
+
+button:hover {
+    background-color: #ff9900;
 }
 
 #affichageBlague {
     margin-top: 20px;
     font-size: 18px;
     color: #333;
+}
+
+.footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.footer a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
