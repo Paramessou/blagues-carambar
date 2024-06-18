@@ -11,9 +11,10 @@ body {
 
 .header {
     background-image: url('img/Les pubs de Carambar.jpg'); /* Spécifiez le chemin de l'image ici */
-    background-size: cover;
-    background-position: center;
-    height: 200px; /* Ajustez la hauteur de la bannière */
+    background-size: contain;
+    background-position: top;
+    background-repeat: no-repeat;
+    height: 200px;
     width: 100%;
 }
 
@@ -23,7 +24,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px; /* Ajout de marge pour l'espacement avec la bannière */
+    margin-top: 20px;
 }
 
 button {
@@ -33,6 +34,7 @@ button {
     background-color: #ffcc00;
     color: #333;
     border: none;
+    border-radius: 10px;
 }
 
 button:hover {
