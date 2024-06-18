@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const swaggerJSDoc = require('swagger-jsdoc');
@@ -8,10 +9,18 @@ const blagueRoutes = require('./routes/blagueRoutes');
 
 const app = express();
 
-// Route pour télécharger la base de données
 app.get('/download-database', (req, res) => {
     const file = path.resolve(__dirname, 'database.sqlite');
-    res.download(file);
+    console.log('Chemin du fichier:', file);
+
+    res.download(file, (err) => {
+        if (err) {
+            console.error('Erreur lors du téléchargement du fichier:', err);
+            res.status(500).send('Erreur interne du serveur');
+        } else {
+            console.log('Fichier téléchargé avec succès');
+        }
+    });
 });
 
 app.use(bodyParser.json());
@@ -43,7 +52,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/api', blagueRoutes);
 
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 3000;
 
 const initializeApp = async () => {
     await initDB();
