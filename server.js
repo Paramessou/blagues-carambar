@@ -8,14 +8,14 @@ const blagueRoutes = require('./routes/blagueRoutes');
 
 const app = express();
 
-// Configuration CORS pour autoriser les requêtes depuis le domaine frontend
-const corsOptions = {
-    origin: 'https://paramessou.github.io',
-    optionsSuccessStatus: 200
-};  
+// Route pour télécharger la base de données
+app.get('/download-database', (req, res) => {
+    const file = path.resolve(__dirname, 'database.sqlite');
+    res.download(file);
+});
 
-app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Bienvenue à l\'API de Blagues Carambar');
