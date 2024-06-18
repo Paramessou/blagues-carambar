@@ -50,9 +50,8 @@ const obtenirBlagueParId = async (req, res) => {
 const obtenirBlagueAleatoire = async (req, res) => {
     try {
         console.log('Tentative de récupération d\'une blague aléatoire');
-        const blague = await Blague.findOne({
-            order: Sequelize.literal('RANDOM()') // Utilisation de Sequelize.literal pour obtenir un enregistrement aléatoire
-        });
+        const [results] = await sequelize.query('SELECT * FROM Blagues ORDER BY RANDOM() LIMIT 1;');
+        const blague = results[0];
         console.log('Blague récupérée:', blague);
         if (blague) {
             res.status(200).json(blague);
@@ -65,5 +64,24 @@ const obtenirBlagueAleatoire = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+// const obtenirBlagueAleatoire = async (req, res) => {
+//     try {
+//         console.log('Tentative de récupération d\'une blague aléatoire');
+//         const blague = await Blague.findOne({
+//             order: Sequelize.literal('RANDOM()') // Utilisation de Sequelize.literal pour obtenir un enregistrement aléatoire
+//         });
+//         console.log('Blague récupérée:', blague);
+//         if (blague) {
+//             res.status(200).json(blague);
+//         } else {
+//             console.log('Aucune blague disponible');
+//             res.status(404).json({ error: 'Aucune blague disponible' });
+//         }
+//     } catch (error) {
+//         console.error('Erreur lors de la récupération de la blague aléatoire:', error);
+//         res.status(500).json({ error: error.message });
+//     }
+// };
 
 module.exports = { ajouterBlague, ajouterBlagues, obtenirToutesBlagues, obtenirBlagueParId, obtenirBlagueAleatoire };
