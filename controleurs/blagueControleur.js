@@ -71,7 +71,6 @@ const obtenirBlagueAleatoire = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
 // const obtenirBlagueAleatoire = async (req, res) => {
 //     try {
 //         console.log('Tentative de récupération d\'une blague aléatoire');
